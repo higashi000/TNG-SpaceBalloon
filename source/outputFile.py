@@ -1,14 +1,17 @@
+import os
 class OutputFile:
     def __init__(self, name = ''):
         self.name = name
 
 
-    def output_file(self, _time, sensor_value):
-        self.time = _time
+    def output_file(self, value_time, sensor_value):
+        os.chdir("../outputDate")
+        self.time = value_time
         self.sensor_value = sensor_value
 
-        file_name = self.name + str(self.time) + '.txt'
+        file_name = self.name + str(value_time) + '.txt'
 
+        print(file_name)
         with open(file_name, 'w') as f:
             f.write(str(self.sensor_value))
             f.flush()

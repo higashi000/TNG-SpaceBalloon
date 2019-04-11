@@ -24,8 +24,7 @@ args = sys.argv
 try:
     output = outputFile.OutputFile('temperature')
     outputValue = read_Temperature()
-    print(args)
-    output.output_file(0, outputValue)
+    output.output_file(args[1], outputValue)
     sleep(1)
 
 except KeyboardInterrupt:

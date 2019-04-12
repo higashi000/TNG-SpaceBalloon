@@ -1,5 +1,7 @@
 import smbus
 import time
+import outputFile
+import sys
 
 bus = smbus.SMBus(1)
 
@@ -25,10 +27,17 @@ if yGyro > 32767 :
 data0 = bus.read_byte_data(0x6A, 0x2C)
 data1 = bus.read_byte_data(0x6A, 0x2D)
 
+
 zGyro = data1 * 256 + data0
 if zGyro > 32767 :
 	zGyro -= 65536
 
-print ("Rotation in X-Axis : %d" %xGyro)
-print ("Rotation in Y-Axis : %d" %yGyro)
-print ("Rotation in Z-Axis : %d" %zGyro)
+args = sys.argv
+
+output = outputFile.OutputFile('gyro')
+outputValue = str(xGyro) + ',' + str(yGyro) + ',' + str(zGyro)
+
+output.output_file(args[1], outputValue)
+
+
+

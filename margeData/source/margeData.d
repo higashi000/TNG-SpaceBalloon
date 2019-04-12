@@ -17,7 +17,7 @@ void loadData(string sensorName) {
     if (!exists(fileName))
       break;
 
-    auto outputStr = to!string(cntFileNum) ~ ',' ~ readText(fileName);
+    auto outputStr = to!string(cntFileNum) ~ ',' ~ readText(fileName) ~ '\n';
 
     if (isFirst) {
       std.file.write(outputFileName, outputStr);

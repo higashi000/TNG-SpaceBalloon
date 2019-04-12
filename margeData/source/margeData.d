@@ -8,6 +8,7 @@ import std.file;
 void loadData(string sensorName) {
   int cntFileNum = 1;
   string outputFileName = sensorName ~ ".csv";
+  bool isFirst = true;
 
   while (1) {
     string fileName = sensorName ~ to!string(cntFileNum) ~ ".txt";
@@ -18,7 +19,12 @@ void loadData(string sensorName) {
 
     auto outputStr = to!string(cntFileNum) ~ ',' ~ readText(fileName);
 
-    append(outputFileName, outputStr);
+    if (isFirst) {
+      std.file.write(outputFileName, outputStr);
+      isFirst = false;
+    } else {
+      append(outputFileName, outputStr);
+    }
 
     cntFileNum++;
   }

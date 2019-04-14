@@ -11,11 +11,6 @@ class OutputFile:
 
         file_name = self.name + str(value_time) + '.txt'
 
-        print(file_name)
-        with open(file_name, 'w') as f:
+        with open(file_name, 'a') as f:
             f.write(str(self.sensor_value))
             f.flush()
-
-        with open(file_name, 'r') as f:
-            file_str = f.read()
-            print(file_str)

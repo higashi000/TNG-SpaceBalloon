@@ -45,11 +45,15 @@ args = sys.argv
 
 output = outputFile.OutputFile('gyro')
 
+now_time = args[1]
+
+hand_over_time = now_time.replace('/', '')
+
 i = 0.0
 gyro_Value = ""
 while i <= 1 :
     gyro_Value += marge_values()
 
-    i += 0.01666666666666666666666666666666
+    i += (1 / 60)
 
-output.output_file(args[1], gyro_Value)
+output.output_file(hand_over_time, gyro_Value)

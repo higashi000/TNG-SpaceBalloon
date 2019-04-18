@@ -1,0 +1,10 @@
+[Unit]
+Description=do something
+
+[Service]
+WorkingDirectory=/home/pi/TNG-SpaceBalloon/source
+User=pi
+ExecStart=/bin/sh /home/pi/TNG-SpaceBalloon/source/start.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -3,6 +3,7 @@ import micropyGPS
 import threading
 import time
 import outputFile
+import sys
 from time import sleep
 
 gps = micropyGPS.MicropyGPS(9, 'dd') # MicroGPSオブジェクトを生成する。
@@ -21,6 +22,8 @@ def rungps(): # GPSモジュールを読み、GPSオブジェクトを更新す�
 gpsthread = threading.Thread(target=rungps, args=()) # 上の関数を実行するスレッドを生成
 gpsthread.daemon = True
 gpsthread.start() # スレッドを起動
+
+args = sys.argv
 
 latitudeOutput = outputFile.OutputFile('gps_latitude')
 longitudeOutput = outputFile.OutputFile('gps_longitude')

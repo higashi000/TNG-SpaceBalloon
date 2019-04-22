@@ -1,3 +1,1 @@
 # TNG-SpaceBalloon
-
-- isatakuのbranchです

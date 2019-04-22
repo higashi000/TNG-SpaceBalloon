@@ -102,7 +102,7 @@ while i <= 1 :
     gyro_value += gyro()
     mag_address_value += magAddress()
 
-    i += (1 / 60)
+    i += (1 / 30)
 
 outputAccleration.output_file(hand_over_time, acceleration_value)
 outputGyro.output_file(hand_over_time, gyro_value)

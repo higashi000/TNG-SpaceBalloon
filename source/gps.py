@@ -31,6 +31,10 @@ aboveSeaLevelOutput = outputFile.OutputFile('gps_aboveSeaLevel')
 now_time = args[1]
 hand_over_time = now_time.replace('/', '')
 
-latitudeOutput.output_file(hand_over_time, str(gps.latitude[0]))
-longitudeOutput.output_file(hand_over_time, str(gps.longitude[0]))
-aboveSeaLevelOutput.output_file(hand_over_time, str(gps.altitude))
+gps_latitude = gps.latitude[0]
+gps_longitude = gps.longitude[0]
+gps_aboveSeaLevel = gps.altitude
+
+latitudeOutput.output_file(hand_over_time, gps_latitude)
+longitudeOutput.output_file(hand_over_time, gps_longitude)
+aboveSeaLevelOutput.output_file(hand_over_time, gps_aboveSeaLevel)

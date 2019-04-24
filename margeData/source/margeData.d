@@ -17,7 +17,10 @@ void loadData(string sensorName) {
     if (!exists(fileName))
       break;
 
-    auto outputStr = to!string(cntFileNum) ~ ',' ~ readText(fileName) ~ '\n';
+    if (sensorName == "gyro" || sensorName == "acceleration" || sensorName == "magAddress")
+      auto outputStr = readText(fileName);
+    else if (sensorName == "temperature" || sensorName == "temperature_K_" || sensorName == "humidity" || sensorName == "gps")
+      auto outputStr = readText(fileName) ~ '\n';
 
     if (isFirst) {
       std.file.write(outputFileName, outputStr);

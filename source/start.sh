@@ -1,17 +1,17 @@
 #!/bin/sh
 
-_i=1
+_i=0
 _one=1
 
 while :
 do
-  _nowTime=`date "+%H%m%S"`
-  _canGetTemperature=$(($_i%60))
-  if [ $_canGetTemperature = 0 ]; then
-    python3 ./temperatureSensor.py $_nowTime &
-  fi
+   _canGetTemperature=$(($_i%60))
+   _nowTime=`date "+%H%m%S"`
+#  if [ $_canGetTemperature = 0 ]; then
+    python3 ./temperature_typeK.py $_nowTime &
+#  fi
 
-  python3 ./gyroSensor.py $_nowTime &
+#  python3 ./acceleration_gyro_magAddress.py $_nowTime &
 
   _i=$(($_i + $_one))
   sync

@@ -6,22 +6,21 @@ import outputFile
 import sys
 from time import sleep
 
-gps = micropyGPS.MicropyGPS(9, 'dd') # MicroGPSオブジェクトを生成する。
-                                     # 引数はタイムゾーンの時差と出力フォーマット
+gps = micropyGPS.MicropyGPS(9, 'dd')
 
-def rungps(): # GPSモジュールを読み、GPSオブジェクトを更新する
+def rungps():
     s = serial.Serial('/dev/serial0', 9600, timeout=10)
-    s.readline() # 最初の1行は中途半端なデーターが読めることがあるので、捨てる
+    s.readline()
     while True:
-        sentence = s.readline().decode('utf-8') # GPSデーターを読み、文字列に変換する
-        if sentence[0] != '$': # 先頭が'$'でなければ捨てる
+        sentence = s.readline().decode('utf-8')
+        if sentence[0] != '$':
             continue
-        for x in sentence: # 読んだ文字列を解析してGPSオブジェクトにデーターを追加、更新する
+        for x in sentence:
             gps.update(x)
 
-gpsthread = threading.Thread(target=rungps, args=()) # 上の関数を実行するスレッドを生成
+gpsthread = threading.Thread(target=rungps, args=())
 gpsthread.daemon = True
-gpsthread.start() # スレッドを起動
+gpsthread.start()
 
 args = sys.argv
 
@@ -31,10 +30,11 @@ aboveSeaLevelOutput = outputFile.OutputFile('gps_aboveSeaLevel')
 now_time = args[1]
 hand_over_time = now_time.replace('/', '')
 
-gps_latitude = gps.latitude[0]
-gps_longitude = gps.longitude[0]
-gps_aboveSeaLevel = gps.altitude
-
-latitudeOutput.output_file(hand_over_time, gps_latitude)
-longitudeOutput.output_file(hand_over_time, gps_longitude)
-aboveSeaLevelOutput.output_file(hand_over_time, gps_aboveSeaLevel)
+if gps.clean_sentences > 20:
+    gps_latitude = str(gps.latitude[0])
+    gps_longitude = str(gps.longitude[0])
+    gps_seaLevel = str(gps.altitude)
+    h = gps.timestamp[0] if gps.timestamp[0] < 24 else gps.timestamp[0] - 24
+    latitudeOutput.output_file(hand_over_time, gps_latitude[0:8])
+    longitudeOutput.output_file(hand_over_time, gps_longitude[0:8])
+    aboveSeaLevelOutput.output_file(hand_over_time, gps_seaLevel[0:8])

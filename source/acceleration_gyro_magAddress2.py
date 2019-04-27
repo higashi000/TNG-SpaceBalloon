@@ -15,7 +15,7 @@ def acceleration() :
 
 #   time.sleep(0.5)
 
-    data = bus.read_i2c_block_data(0x19, 0x02, 6)
+    data = bus.read_i2c_block_data(0x18, 0x02, 6)
 
     xAccl = ((data[1] * 256) + (data[0] & 0xF0)) / 16
     if xAccl > 2047 :
@@ -40,7 +40,7 @@ def gyro() :
 
 #   time.sleep(0.5)
 
-    data = bus.read_i2c_block_data(0x69, 0x02, 6)
+    data = bus.read_i2c_block_data(0x68, 0x02, 6)
 
     xGyro = data[1] * 256 + data[0]
     if xGyro > 32767 :
@@ -66,7 +66,7 @@ def magAddress() :
 
 #   time.sleep(0.5)
 
-    data = bus.read_i2c_block_data(0x13, 0x42, 6)
+    data = bus.read_i2c_block_data(0x12, 0x42, 6)
 
     xMag = ((data[1] * 256) + (data[0] & 0xF8)) / 8
     if xMag > 4095 :
@@ -82,9 +82,9 @@ def magAddress() :
 
 # }}}
 
-outputAccleration = outputFile.OutputFile('acceleration_2')
-outputGyro = outputFile.OutputFile('gyro_2')
-outputMagAddress = outputFile.OutputFile('MagAddress_2')
+outputAccleration = outputFile.OutputFile('acceleration_2_')
+outputGyro = outputFile.OutputFile('gyro_2_')
+outputMagAddress = outputFile.OutputFile('MagAddress_2_')
 
 args = sys.argv
 

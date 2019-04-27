@@ -4,7 +4,6 @@ import threading
 import time
 import outputFile
 import sys
-from time import sleep
 
 gps = micropyGPS.MicropyGPS(9, 'dd')
 

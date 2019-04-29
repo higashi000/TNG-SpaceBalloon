@@ -5,7 +5,8 @@ class OutputFile:
 
 
     def output_file(self, value_time, sensor_value):
-        os.chdir("../outputData")
+        dirName = '../outputData/'
+        os.chdir('../outputData/')
         self.time = value_time
         self.sensor_value = sensor_value
 

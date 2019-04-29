@@ -36,10 +36,10 @@ args = sys.argv
 try:
     tempOutput = outputFile.OutputFile('temperature')
     outputTempValue = getTemp()
-    tempOutput.output_file(args[2], args[1], outputTempValue)
+    tempOutput.output_file(args[1], outputTempValue)
     humidOutput = outputFile.OutputFile('humidity')
     outputHumidValue = getHumid()
-    humidOutput.output_file(args[2], args[1], outputHumidValue)
+    humidOutput.output_file(args[1], outputHumidValue)
     sleep(1)
 
 except KeyboardInterrupt:

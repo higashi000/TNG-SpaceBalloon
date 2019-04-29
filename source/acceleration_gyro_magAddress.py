@@ -104,6 +104,6 @@ while i <= 1 :
 
     i += (1 / 60)
 
-outputAccleration.output_file(args[2], hand_over_time, acceleration_value)
-outputGyro.output_file(args[2], hand_over_time, gyro_value)
-outputMagAddress.output_file(args[2], hand_over_time, mag_address_value)
+outputAccleration.output_file(hand_over_time, acceleration_value)
+outputGyro.output_file(hand_over_time, gyro_value)
+outputMagAddress.output_file(hand_over_time, mag_address_value)

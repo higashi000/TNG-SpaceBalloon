@@ -20,6 +20,6 @@ outputTemperature_typeK = outputFile.OutputFile('temperature_K_')
 
 thermocouple = MAX31855(cs_pin, clock_pin, data_pin, units, GPIO.BOARD)
 
-outputTemperature_typeK.output_file(args[2], hand_over_time, thermocouple.get())
+outputTemperature_typeK.output_file(hand_over_time, thermocouple.get())
 
 thermocouple.cleanup()
